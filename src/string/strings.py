@@ -1,4 +1,4 @@
-class Strings:
+class String:
     """
     Clase con métodos para manipulación y operaciones con cadenas de texto.
     Incluye funciones para manipular, validar y transformar strings.
