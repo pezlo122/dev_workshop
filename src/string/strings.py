@@ -5,6 +5,8 @@ class String:
     """
     
     def es_palindromo(self, texto):
+        class Magic:
+    def es_palindromo(self, texto):
         """
         Verifica si una cadena es un palíndromo (se lee igual de izquierda a derecha y viceversa).
         
@@ -14,18 +16,14 @@ class String:
         Returns:
             bool: True si es palíndromo, False en caso contrario
         """
-        pass
-    
-    def invertir_cadena(self, texto):
-        """
-        Invierte una cadena de texto sin usar slicing ni reversed().
-        
-        Args:
-            texto (str): Cadena a invertir
-            
-        Returns:
-            str: Cadena invertida
-        """
+        texto = texto.lower().replace(" ", "").replace(",", "").replace(".", "")  # Normalizar el texto
+        return texto == texto[::-1]  # Compara la cadena con su versión invertida
+
+# Ejemplo de uso
+magic = Magic()
+print(magic.es_palindromo("Anita lava la tina"))  # True
+print(magic.es_palindromo("Hola mundo"))  # False
+print(magic.es_palindromo("Reconocer"))  # True
         pass
     
     def contar_vocales(self, texto):
