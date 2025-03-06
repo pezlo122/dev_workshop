@@ -1,151 +1,99 @@
-class String:
-    """
-    Clase con métodos para manipulación y operaciones con cadenas de texto.
-    Incluye funciones para manipular, validar y transformar strings.
-    """
-    
-    def es_palindromo(self, texto):
-        class Magic:
-    def es_palindromo(self, texto):
-        """
-        Verifica si una cadena es un palíndromo (se lee igual de izquierda a derecha y viceversa).
-        
-        Args:
-            texto (str): Cadena a verificar
-            
-        Returns:
-            bool: True si es palíndromo, False en caso contrario
-        """
-        texto = texto.lower().replace(" ", "").replace(",", "").replace(".", "")  # Normalizar el texto
-        return texto == texto[::-1] 
+import pytest
+from src.strings.strings import Strings
 
-
-magic = Magic()
-print(magic.es_palindromo("Anita lava la tina")) 
-print(magic.es_palindromo("Hola mundo"))  
-print(magic.es_palindromo("Reconocer"))  
-        pass
+class TestStrings:
+    def setup_method(self):
+        self.strings = Strings()
     
-    def contar_vocales(self, texto):
-        """
-        Cuenta el número de vocales en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar vocales
-            
-        Returns:
-            int: Número de vocales en la cadena
-        """
-        pass
+    def test_es_palindromo(self):
+        # Test con palíndromos simples
+        assert self.strings.es_palindromo("ana") == True
+        assert self.strings.es_palindromo("reconocer") == True
+        # Test con palíndromos con espacios y mayúsculas
+        assert self.strings.es_palindromo("Anita lava la tina") == True
+        # Test con no palíndromos
+        assert self.strings.es_palindromo("sigmotoa") == False
+        assert self.strings.es_palindromo("mundo") == False
+        # Test con cadena vacía
+        assert self.strings.es_palindromo("") == True
     
-    def contar_consonantes(self, texto):
-        """
-        Cuenta el número de consonantes en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar consonantes
-            
-        Returns:
-            int: Número de consonantes en la cadena
-        """
-        pass
+    def test_invertir_cadena(self):
+        # Test con cadenas simples
+        assert self.strings.invertir_cadena("hola") == "aloh"
+        assert self.strings.invertir_cadena("Python") == "nohtyP"
+        assert self.strings.invertir_cadena("sigmotoA") == "Aotomgis"
+        # Test con cadena vacía
+        assert self.strings.invertir_cadena("") == ""
+        # Test con un solo carácter
+        assert self.strings.invertir_cadena("a") == "a"
     
-    def es_anagrama(self, texto1, texto2):
-        """
-        Verifica si dos cadenas son anagramas (contienen exactamente los mismos caracteres).
-        
-        Args:
-            texto1 (str): Primera cadena
-            texto2 (str): Segunda cadena
-            
-        Returns:
-            bool: True si son anagramas, False en caso contrario
-        """
-        pass
+    def test_contar_vocales(self):
+        # Test con cadenas con vocales
+        assert self.strings.contar_vocales("sigmotoa") == 4
+        assert self.strings.contar_vocales("murcielago") == 5
+        # Test con cadena sin vocales
+        assert self.strings.contar_vocales("rhythm") == 0
+        # Test con vocales en mayúsculas y minúsculas
+        assert self.strings.contar_vocales("AeIoU") == 5
+        # Test con cadena vacía
+        assert self.strings.contar_vocales("") == 0
     
-    def contar_palabras(self, texto):
-        """
-        Cuenta el número de palabras en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar palabras
-            
-        Returns:
-            int: Número de palabras en la cadena
-        """
-        pass
+    def test_contar_consonantes(self):
+        # Test con cadenas con consonantes
+        assert self.strings.contar_consonantes("sigmotoa") == 4
+        assert self.strings.contar_consonantes("Python") == 4
+        # Test con cadena sin consonantes
+        assert self.strings.contar_consonantes("aeiou") == 0
+        # Test con consonantes en mayúsculas y minúsculas
+        assert self.strings.contar_consonantes("PythOn") == 4
+        # Test con cadena vacía
+        assert self.strings.contar_consonantes("") == 0
     
-    def palabras_mayus(self, texto):
-        """
-        Pon en Mayuscula la primera letra de cada palabra en una cadena.
-        
-        Args:
-            texto (str): Cadena
-            
-        Returns:
-            str: Cadena con la primera letra de cada palabra en mayúscula
-        """
-        pass
+    def test_es_anagrama(self):
+        # Test con anagramas simples
+        assert self.strings.es_anagrama("roma", "amor") == True
+        assert self.strings.es_anagrama("listen", "silent") == True
+        assert self.strings.es_anagrama("ekans","sneak") == True
+        # Test con anagramas con mayúsculas
+        assert self.strings.es_anagrama("Dormitory", "Dirty room") == True
+        # Test con no anagramas
+        assert self.strings.es_anagrama("hello", "world") == False
+        # Test con cadenas de diferente longitud
+        assert self.strings.es_anagrama("python", "typhons") == False
     
-    def eliminar_espacios_duplicados(self, texto):
-        """
-        Elimina espacios duplicados en una cadena.
-        
-        Args:
-            texto (str): Cadena con posibles espacios duplicados
-            
-        Returns:
-            str: Cadena sin espacios duplicados
-        """
-        pass
+    def test_contar_palabras(self):
+        # Test con frases simples
+        assert self.strings.contar_palabras("Hola mundo") == 2
+        assert self.strings.contar_palabras("Python es divertido") == 3
+        # Test con espacios múltiples
+        assert self.strings.contar_palabras("  dev with sigmotoa    ") == 3
+        # Test con cadena vacía
+        assert self.strings.contar_palabras("") == 0
     
-    def es_numero_entero(self, texto):
-        """
-        Verifica si una cadena representa un número entero sin usar isdigit().
-        
-        Args:
-            texto (str): Cadena a verificar
-            
-        Returns:
-            bool: True si la cadena representa un número entero, False en caso contrario
-        """
-        pass
+    def test_palabras_mayus(self):
+        # Test con frases simples
+        assert self.strings.palabras_mayus("hola mundo") == "Hola Mundo"
+        assert self.strings.palabras_mayus("sigmotoa es genial") == "Sigmotoa Es Genial"
+        # Test con palabras ya capitalizadas
+        assert self.strings.palabras_mayus("Hola Mundo") == "Hola Mundo"
+        # Test con espacios múltiples
+        assert self.strings.palabras_mayus("  hola  mundo  ") == "  Hola  Mundo  "
+        # Test con cadena vacía
+        assert self.strings.palabras_mayus("") == ""
     
-    def cifrar_cesar(self, texto, desplazamiento):
-        """
-        Aplica el cifrado César a una cadena de texto.
-        
-        Args:
-            texto (str): Cadena a cifrar
-            desplazamiento (int): Número de posiciones a desplazar cada letra
-            
-        Returns:
-            str: Cadena cifrada
-        """
-        pass
+    def test_eliminar_espacios_duplicados(self):
+        # Test con espacios múltiples
+        assert self.strings.eliminar_espacios_duplicados("Hola  mundo") == "Hola mundo"
+        assert self.strings.eliminar_espacios_duplicados("  sigmotoa   es   genial  ") == " sigmotoa es genial "
+        # Test sin espacios duplicados
+        assert self.strings.eliminar_espacios_duplicados("Hola mundo") == "Hola mundo"
+        # Test con cadena vacía
+        assert self.strings.eliminar_espacios_duplicados("") == ""
     
-    def descifrar_cesar(self, texto, desplazamiento):
-        """
-        Descifra una cadena cifrada con el método César.
-        
-        Args:
-            texto (str): Cadena cifrada
-            desplazamiento (int): Número de posiciones que se desplazó cada letra
-            
-        Returns:
-            str: Cadena descifrada
-        """
-        pass
-    
-    def encontrar_subcadena(self, texto, subcadena):
-        """
-        Encuentra todas las posiciones de una subcadena en un texto sin usar find() o index().
-        
-        Args:
-            texto (str): Cadena principal
-            subcadena (str): Subcadena a buscar
-            
-        Returns:
-            list: Lista con las posiciones iniciales de cada ocurrencia
-        """
-        pass
+    def test_es_numero_entero(self):
+        # Test con números enteros
+        assert self.strings.es_numero_entero("123") == True
+        assert self.strings.es_numero_entero("-456") == True
+        # Test con números no enteros
+        assert self.strings.es_numero_entero("12.34") == False
+        assert self.strings.es_numero_ent
