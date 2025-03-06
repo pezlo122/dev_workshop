@@ -17,13 +17,13 @@ class String:
             bool: True si es palíndromo, False en caso contrario
         """
         texto = texto.lower().replace(" ", "").replace(",", "").replace(".", "")  # Normalizar el texto
-        return texto == texto[::-1]  # Compara la cadena con su versión invertida
+        return texto == texto[::-1] 
 
-# Ejemplo de uso
+
 magic = Magic()
-print(magic.es_palindromo("Anita lava la tina"))  # True
-print(magic.es_palindromo("Hola mundo"))  # False
-print(magic.es_palindromo("Reconocer"))  # True
+print(magic.es_palindromo("Anita lava la tina")) 
+print(magic.es_palindromo("Hola mundo"))  
+print(magic.es_palindromo("Reconocer"))  
         pass
     
     def contar_vocales(self, texto):
