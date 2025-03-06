@@ -5,17 +5,36 @@ class Geometria:
     """
     
     def area_rectangulo(self, base, altura):
-        """
-        Calcula el área de un rectángulo.
-        
-        Args:
-            base (float): Longitud de la base del rectángulo
-            altura (float): Altura del rectángulo
-            
-        Returns:
-            float: Área del rectángulo
-        """
-        return base*altura
+       mport math
+
+class Geometria:
+    """
+    Class with geometric exercises.
+    Include basic and funny operations in 2D and 3D.
+    """
+    
+    def area_rectangulo(self, base, altura):
+        return base * altura
+    pass
+    def perimetro_rectangulo(self, base, altura):
+        return 2 * (base + altura)
+    pass
+    def area_circulo(self, radio):
+        return math.pi * radio**2
+    pass
+    def perimetro_circulo(self, radio):
+        return 2 * math.pi * radio
+    pass
+    def area_triangulo(self, base, altura):
+        return (base * altura) / 2
+    pass
+    def perimetro_triangulo(self, lado1, lado2, lado3):
+        return lado1 + lado2 + lado3
+    pass
+    def es_triangulo_valido(self, lado1, lado2, lado3):
+        return (lado1 + lado2 > lado3 and lado1 + lado3 > lado2 and lado2 + lado3 > lado1)
+    pass
+
     
     def perimetro_rectangulo(self, base, altura):
         """
