@@ -2,32 +2,29 @@ class Logica:
     """
     Clase con métodos para realizar operaciones de lógica booleana y algoritmos.
     """
-    
+    class Magic:
     def AND(self, a, b):
         """
-        Implementa la operación lógica AND.
+        Implementa la operación lógica AND con números.
+        Todo número distinto de 0 se considera True y el 0 se considera False.
         
         Args:
-            a (bool): Primer valor booleano
-            b (bool): Segundo valor booleano
+            a (int): Primer número
+            b (int): Segundo número
             
         Returns:
-            bool: Resultado de a AND b
+            int: 1 si ambos números son distintos de 0 (True AND True), 0 en caso contrario
         """
-        pass
-    
-    def OR(self, a, b):
-        """
-        Implementa la operación lógica OR.
-        
-        Args:
-            a (bool): Primer valor booleano
-            b (bool): Segundo valor booleano
-            
-        Returns:
-            bool: Resultado de a OR b
-        """
-        pass
+        return int(bool(a) and bool(b)) 
+
+magic = Magic()
+print(magic.AND(5, 3))   
+print(magic.AND(0, 7))   
+print(magic.AND(8, 0))   
+print(magic.AND(0, 0))   
+
+ 
+     pass
     
     def NOT(self, a):
         """
