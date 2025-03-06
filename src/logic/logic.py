@@ -1,119 +1,67 @@
-class Logica:
-    """
-    Clase con métodos para realizar operaciones de lógica booleana y algoritmos.
-    """
-    class Magic:
-    def AND(self, a, b):
-        """
-        Implementa la operación lógica AND con números.
-        Todo número distinto de 0 se considera True y el 0 se considera False.
-        
-        Args:
-            a (int): Primer número
-            b (int): Segundo número
-            
-        Returns:
-            int: 1 si ambos números son distintos de 0 (True AND True), 0 en caso contrario
-        """
-        return int(bool(a) and bool(b)) 
+import pytest
+from src.logic.logic import Logica
 
-magic = Magic()
-print(magic.AND(5, 3))   
-print(magic.AND(0, 7))   
-print(magic.AND(8, 0))   
-print(magic.AND(0, 0))   
-
- 
-     pass
+class TestLogica:
+    def setup_method(self):
+        self.logica = Logica()
     
-    def NOT(self, a):
-        """
-        Implementa la operación lógica NOT.
-        
-        Args:
-            a (bool): Valor booleano
-            
-        Returns:
-            bool: Resultado de NOT a
-        """
-        pass
+    def test_AND(self):
+        # Test para todas las combinaciones de AND
+        assert self.logica.AND(True, True) == True
+        assert self.logica.AND(True, False) == False
+        assert self.logica.AND(False, True) == False
+        assert self.logica.AND(False, False) == False
     
-    def XOR(self, a, b):
-        """
-        Implementa la operación lógica XOR (OR exclusivo).
-        
-        Args:
-            a (bool): Primer valor booleano
-            b (bool): Segundo valor booleano
-            
-        Returns:
-            bool: Resultado de a XOR b
-        """
-        pass
+    def test_OR(self):
+        # Test para todas las combinaciones de OR
+        assert self.logica.OR(True, True) == True
+        assert self.logica.OR(True, False) == True
+        assert self.logica.OR(False, True) == True
+        assert self.logica.OR(False, False) == False
     
-    def NAND(self, a, b):
-        """
-        Implementa la operación lógica NAND (NOT AND).
-        
-        Args:
-            a (bool): Primer valor booleano
-            b (bool): Segundo valor booleano
-            
-        Returns:
-            bool: Resultado de a NAND b
-        """
-        pass
+    def test_NOT(self):
+        # Test para todas las combinaciones de NOT
+        assert self.logica.NOT(True) == False
+        assert self.logica.NOT(False) == True
     
-    def NOR(self, a, b):
-        """
-        Implementa la operación lógica NOR (NOT OR).
-        
-        Args:
-            a (bool): Primer valor booleano
-            b (bool): Segundo valor booleano
-            
-        Returns:
-            bool: Resultado de a NOR b
-        """
-        pass
+    def test_XOR(self):
+        # Test para todas las combinaciones de XOR
+        assert self.logica.XOR(True, True) == False
+        assert self.logica.XOR(True, False) == True
+        assert self.logica.XOR(False, True) == True
+        assert self.logica.XOR(False, False) == False
     
-    def XNOR(self, a, b):
-        """
-        Implementa la operación lógica XNOR (NOT XOR).
-        
-        Args:
-            a (bool): Primer valor booleano
-            b (bool): Segundo valor booleano
-            
-        Returns:
-            bool: Resultado de a XNOR b
-        """
-        pass
+    def test_NAND(self):
+        # Test para todas las combinaciones de NAND
+        assert self.logica.NAND(True, True) == False
+        assert self.logica.NAND(True, False) == True
+        assert self.logica.NAND(False, True) == True
+        assert self.logica.NAND(False, False) == True
     
-    def implicacion(self, a, b):
-        """
-        Implementa la operación lógica de implicación (a -> b).
-        
-        Args:
-            a (bool): Primer valor booleano (antecedente)
-            b (bool): Segundo valor booleano (consecuente)
-            
-        Returns:
-            bool: Resultado de la implicación
-        """
-        pass
+    def test_NOR(self):
+        # Test para todas las combinaciones de NOR
+        assert self.logica.NOR(True, True) == False
+        assert self.logica.NOR(True, False) == False
+        assert self.logica.NOR(False, True) == False
+        assert self.logica.NOR(False, False) == True
     
-    def bi_implicacion(self, a, b):
-        """
-        Implementa la operación lógica de bi-implicación (a <-> b).
-        
-        Args:
-            a (bool): Primer valor booleano
-            b (bool): Segundo valor booleano
-            
-        Returns:
-            bool: Resultado de la bi-implicación
-        """
-        pass
+    def test_XNOR(self):
+        # Test para todas las combinaciones de XNOR
+        assert self.logica.XNOR(True, True) == True
+        assert self.logica.XNOR(True, False) == False
+        assert self.logica.XNOR(False, True) == False
+        assert self.logica.XNOR(False, False) == True
     
+    def test_implicacion(self):
+        # Test para todas las combinaciones de implicación
+        assert self.logica.implicacion(True, True) == True
+        assert self.logica.implicacion(True, False) == False
+        assert self.logica.implicacion(False, True) == True
+        assert self.logica.implicacion(False, False) == True
     
+    def test_bi_implicacion(self):
+        # Test para todas las combinaciones de bi-implicación
+        assert self.logica.bi_implicacion(True, True) == True
+        assert self.logica.bi_implicacion(True, False) == False
+        assert self.logica.bi_implicacion(False, True) == False
+        assert self.logica.bi_implicacion(False, False) == True
