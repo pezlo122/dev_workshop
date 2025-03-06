@@ -1,355 +1,210 @@
-class Geometria:
-    """
-    Class with geometric exercises.
-    Include basic and funny operations in 2D and 3D.
-    """
-    
-    def area_rectangulo(self, base, altura):
-       mport math
+import pytest
+import math
+from src.geometric.geometric import Geometria
 
-class Geometria:
-    """
-    Class with geometric exercises.
-    Include basic and funny operations in 2D and 3D.
-    """
+class TestGeometria:
+    def setup_method(self):
+        self.geometria = Geometria()
     
-    def area_rectangulo(self, base, altura):
-        return base * altura
-    pass
-    def perimetro_rectangulo(self, base, altura):
-        return 2 * (base + altura)
-    pass
-    def area_circulo(self, radio):
-        return math.pi * radio**2
-    pass
-    def perimetro_circulo(self, radio):
-        return 2 * math.pi * radio
-    pass
-    def area_triangulo(self, base, altura):
-        return (base * altura) / 2
-    pass
-    def perimetro_triangulo(self, lado1, lado2, lado3):
-        return lado1 + lado2 + lado3
-    pass
-    def es_triangulo_valido(self, lado1, lado2, lado3):
-        return (lado1 + lado2 > lado3 and lado1 + lado3 > lado2 and lado2 + lado3 > lado1)
-    pass
-
+    def test_area_rectangulo(self):
+        # Test con valores enteros positivos
+        assert self.geometria.area_rectangulo(5, 4) == 20
+        # Test con valores decimales
+        assert self.geometria.area_rectangulo(2.5, 3) == 7.5
+        # Test con cero (área cero)
+        assert self.geometria.area_rectangulo(0, 5) == 0
     
-    def perimetro_rectangulo(self, base, altura):
-        """
-        Calcula el perímetro de un rectángulo.
-        
-        Args:
-            base (float): Longitud de la base del rectángulo
-            altura (float): Altura del rectángulo
-            
-        Returns:
-            float: Perímetro del rectángulo
-        """
-        pass
+    def test_perimetro_rectangulo(self):
+        # Test con valores enteros positivos
+        assert self.geometria.perimetro_rectangulo(5, 4) == 18
+        # Test con valores decimales
+        assert self.geometria.perimetro_rectangulo(2.5, 3) == 11
+        # Test con cuadrado (lados iguales)
+        assert self.geometria.perimetro_rectangulo(2, 2) == 8
     
-    def area_circulo(self, radio):
-        """
-        Calcula el área de un círculo.
-        
-        Args:
-            radio (float): Radio del círculo
-            
-        Returns:
-            float: Área del círculo
-        """
-        pass
+    def test_area_circulo(self):
+        # Test con radio entero
+        assert round(self.geometria.area_circulo(2), 2) == 12.57
+        # Test con radio decimal
+        assert round(self.geometria.area_circulo(1.5), 2) == 7.07
+        # Test con radio cero
+        assert self.geometria.area_circulo(0) == 0
     
-    def perimetro_circulo(self, radio):
-        """
-        Calcula el perímetro (circunferencia) de un círculo.
-        
-        Args:
-            radio (float): Radio del círculo
-            
-        Returns:
-            float: Perímetro del círculo
-        """
-        pass
+    def test_perimetro_circulo(self):
+        # Test con radio entero
+        assert round(self.geometria.perimetro_circulo(2), 2) == 12.57
+        # Test con radio decimal
+        assert round(self.geometria.perimetro_circulo(1.5), 2) == 9.42
+        # Test con radio cero
+        assert self.geometria.perimetro_circulo(0) == 0
     
-    def area_triangulo(self, base, altura):
-        """
-        Calcula el área de un triángulo.
-        
-        Args:
-            base (float): Longitud de la base del triángulo
-            altura (float): Altura del triángulo
-            
-        Returns:
-            float: Área del triángulo
-        """
-        pass
+    def test_area_triangulo(self):
+        # Test con valores enteros
+        assert self.geometria.area_triangulo(6, 4) == 12
+        # Test con valores decimales
+        assert self.geometria.area_triangulo(5.5, 2.5) == 6.875
+        # Test con base cero (área cero)
+        assert self.geometria.area_triangulo(0, 5) == 0
     
-    def perimetro_triangulo(self, lado1, lado2, lado3):
-        """
-        Calcula el perímetro de un triángulo.
-        
-        Args:
-            lado1 (float): Longitud del primer lado
-            lado2 (float): Longitud del segundo lado
-            lado3 (float): Longitud del tercer lado
-            
-        Returns:
-            float: Perímetro del triángulo
-        """
-        pass
+    def test_perimetro_triangulo(self):
+        # Test con triángulo equilátero
+        assert self.geometria.perimetro_triangulo(5, 5, 5) == 15
+        # Test con triángulo escaleno
+        assert self.geometria.perimetro_triangulo(3, 4, 5) == 12
+        # Test con valores decimales
+        assert self.geometria.perimetro_triangulo(2.5, 3.5, 4.5) == 10.5
     
-    def es_triangulo_valido(self, lado1, lado2, lado3):
-        """
-        Verifica si tres longitudes pueden formar un triángulo válido.
-        Un triángulo es válido si la suma de las longitudes de dos lados
-        es mayor que la longitud del tercer lado, para todos los lados.
-        
-        Args:
-            lado1 (float): Longitud del primer lado
-            lado2 (float): Longitud del segundo lado
-            lado3 (float): Longitud del tercer lado
-            
-        Returns:
-            bool: True si los lados pueden formar un triángulo, False en caso contrario
-        """
-        pass
+    def test_es_triangulo_valido(self):
+        # Test con triángulo válido
+        assert self.geometria.es_triangulo_valido(3, 4, 5) == True
+        # Test con triángulo inválido (no cumple la desigualdad triangular)
+        assert self.geometria.es_triangulo_valido(1, 2, 10) == False
+        # Test con valores negativos (inválido)
+        assert self.geometria.es_triangulo_valido(-1, 4, 5) == False
     
-    def area_trapecio(self, base_mayor, base_menor, altura):
-        """
-        Calcula el área de un trapecio.
-        
-        Args:
-            base_mayor (float): Longitud de la base mayor
-            base_menor (float): Longitud de la base menor
-            altura (float): Altura del trapecio
-            
-        Returns:
-            float: Área del trapecio
-        """
-        pass
+    def test_area_trapecio(self):
+        # Test con valores enteros
+        assert self.geometria.area_trapecio(10, 6, 4) == 32
+        # Test con valores decimales
+        assert self.geometria.area_trapecio(7.5, 4.5, 3) == 18
+        # Test con altura cero (área cero)
+        assert self.geometria.area_trapecio(10, 5, 0) == 0
     
-    def area_rombo(self, diagonal_mayor, diagonal_menor):
-        """
-        Calcula el área de un rombo usando sus diagonales.
-        
-        Args:
-            diagonal_mayor (float): Longitud de la diagonal mayor
-            diagonal_menor (float): Longitud de la diagonal menor
-            
-        Returns:
-            float: Área del rombo
-        """
-        pass
+    def test_area_rombo(self):
+        # Test con valores enteros
+        assert self.geometria.area_rombo(8, 6) == 24
+        # Test con valores decimales
+        assert self.geometria.area_rombo(5.5, 4.5) == 12.375
+        # Test con diagonal cero (área cero)
+        assert self.geometria.area_rombo(0, 5) == 0
     
-    def area_pentagono_regular(self, lado, apotema):
-        """
-        Calcula el área de un pentágono regular.
-        
-        Args:
-            lado (float): Longitud del lado del pentágono
-            apotema (float): Longitud de la apotema (distancia del centro al punto medio de un lado)
-            
-        Returns:
-            float: Área del pentágono regular
-        """
-        pass
+    def test_area_pentagono_regular(self):
+        # Test con valores enteros
+        assert round(self.geometria.area_pentagono_regular(6, 4.1), 2) == 61.5
+        # Test con valores decimales
+        assert round(self.geometria.area_pentagono_regular(3.5, 2.4), 2) == 21
+        # Test con apotema cero (área cero)
+        assert self.geometria.area_pentagono_regular(5, 0) == 0
     
-    def perimetro_pentagono_regular(self, lado):
-        """
-        Calcula el perímetro de un pentágono regular.
-        
-        Args:
-            lado (float): Longitud del lado del pentágono
-            
-        Returns:
-            float: Perímetro del pentágono regular
-        """
-        pass
+    def test_perimetro_pentagono_regular(self):
+        # Test con valor entero
+        assert self.geometria.perimetro_pentagono_regular(4) == 20
+        # Test con valor decimal
+        assert self.geometria.perimetro_pentagono_regular(2.5) == 12.5
+        # Test con lado cero (perímetro cero)
+        assert self.geometria.perimetro_pentagono_regular(0) == 0
     
-    def area_hexagono_regular(self, lado, apotema):
-        """
-        Calcula el área de un hexágono regular.
-        
-        Args:
-            lado (float): Longitud del lado del hexágono
-            apotema (float): Longitud de la apotema (distancia del centro al punto medio de un lado)
-            
-        Returns:
-            float: Área del hexágono regular
-        """
-        pass
+    def test_area_hexagono_regular(self):
+        # Test con valores enteros
+        assert round(self.geometria.area_hexagono_regular(5, 4.33), 2) == 64.95
+        # Test con valores decimales
+        assert round(self.geometria.area_hexagono_regular(2.5, 2.165), 2) == 16.24
+        # Test con apotema cero (área cero)
+        assert self.geometria.area_hexagono_regular(5, 0) == 0
     
-    def perimetro_hexagono_regular(self, lado):
-        """
-        Calcula el perímetro de un hexágono regular.
-        
-        Args:
-            lado (float): Longitud del lado del hexágono
-            
-        Returns:
-            float: Perímetro del hexágono regular
-        """
-        pass
+    def test_perimetro_hexagono_regular(self):
+        # Test con valor entero
+        assert self.geometria.perimetro_hexagono_regular(4) == 24
+        # Test con valor decimal
+        assert self.geometria.perimetro_hexagono_regular(2.5) == 15
+        # Test con lado cero (perímetro cero)
+        assert self.geometria.perimetro_hexagono_regular(0) == 0
     
-    def volumen_cubo(self, lado):
-        """
-        Calcula el volumen de un cubo.
-        
-        Args:
-            lado (float): Longitud del lado del cubo
-            
-        Returns:
-            float: Volumen del cubo
-        """
-        pass
+    def test_volumen_cubo(self):
+        # Test con valor entero
+        assert self.geometria.volumen_cubo(3) == 27
+        # Test con valor decimal
+        assert self.geometria.volumen_cubo(2.5) == 15.625
+        # Test con lado cero (volumen cero)
+        assert self.geometria.volumen_cubo(0) == 0
     
-    def area_superficie_cubo(self, lado):
-        """
-        Calcula el área de la superficie de un cubo.
-        
-        Args:
-            lado (float): Longitud del lado del cubo
-            
-        Returns:
-            float: Área de la superficie del cubo
-        """
-        pass
+    def test_area_superficie_cubo(self):
+        # Test con valor entero
+        assert self.geometria.area_superficie_cubo(3) == 54
+        # Test con valor decimal
+        assert self.geometria.area_superficie_cubo(2.5) == 37.5
+        # Test con lado cero (área cero)
+        assert self.geometria.area_superficie_cubo(0) == 0
     
-    def volumen_esfera(self, radio):
-        """
-        Calcula el volumen de una esfera.
-        
-        Args:
-            radio (float): Radio de la esfera
-            
-        Returns:
-            float: Volumen de la esfera
-        """
-        pass
+    def test_volumen_esfera(self):
+        # Test con radio entero
+        assert round(self.geometria.volumen_esfera(3), 2) == 113.1
+        # Test con radio decimal
+        assert round(self.geometria.volumen_esfera(2.5), 2) == 65.45
+        # Test con radio cero (volumen cero)
+        assert self.geometria.volumen_esfera(0) == 0
     
-    def area_superficie_esfera(self, radio):
-        """
-        Calcula el área de la superficie de una esfera.
-        
-        Args:
-            radio (float): Radio de la esfera
-            
-        Returns:
-            float: Área de la superficie de la esfera
-        """
-        pass
+    def test_area_superficie_esfera(self):
+        # Test con radio entero
+        assert round(self.geometria.area_superficie_esfera(3), 2) == 113.1
+        # Test con radio decimal
+        assert round(self.geometria.area_superficie_esfera(2.5), 2) == 78.54
+        # Test con radio cero (área cero)
+        assert self.geometria.area_superficie_esfera(0) == 0
     
-    def volumen_cilindro(self, radio, altura):
-        """
-        Calcula el volumen de un cilindro.
-        
-        Args:
-            radio (float): Radio de la base del cilindro
-            altura (float): Altura del cilindro
-            
-        Returns:
-            float: Volumen del cilindro
-        """
-        pass
+    def test_volumen_cilindro(self):
+        # Test con valores enteros
+        assert round(self.geometria.volumen_cilindro(3, 5), 2) == 141.37
+        # Test con valores decimales
+        assert round(self.geometria.volumen_cilindro(2.5, 4.2), 2) == 82.47
+        # Test con altura cero (volumen cero)
+        assert self.geometria.volumen_cilindro(3, 0) == 0
     
-    def area_superficie_cilindro(self, radio, altura):
-        """
-        Calcula el área de la superficie de un cilindro.
-        
-        Args:
-            radio (float): Radio de la base del cilindro
-            altura (float): Altura del cilindro
-            
-        Returns:
-            float: Área de la superficie del cilindro
-        """
-        pass
+    def test_area_superficie_cilindro(self):
+        # Test con valores enteros
+        assert round(self.geometria.area_superficie_cilindro(3, 5), 2) == 150.8
+        # Test con valores decimales
+        assert round(self.geometria.area_superficie_cilindro(2.5, 4.2), 2) == 105.5
+        # Test con altura cero (sólo áreas de las bases)
+        assert round(self.geometria.area_superficie_cilindro(3, 0), 2) == 56.55
     
-    def distancia_entre_puntos(self, x1, y1, x2, y2):
-        """
-        Calcula la distancia euclidiana entre dos puntos en un plano 2D.
-        
-        Args:
-            x1 (float): Coordenada x del primer punto
-            y1 (float): Coordenada y del primer punto
-            x2 (float): Coordenada x del segundo punto
-            y2 (float): Coordenada y del segundo punto
-            
-        Returns:
-            float: Distancia entre los dos puntos
-        """
-        pass
+    def test_distancia_entre_puntos(self):
+        # Test con valores enteros positivos
+        assert self.geometria.distancia_entre_puntos(0, 0, 3, 4) == 5
+        # Test con valores negativos
+        assert self.geometria.distancia_entre_puntos(-1, -2, 2, 3) == 5.83
+        # Test con puntos idénticos (distancia cero)
+        assert self.geometria.distancia_entre_puntos(5, 5, 5, 5) == 0
     
-    def punto_medio(self, x1, y1, x2, y2):
-        """
-        Calcula el punto medio entre dos puntos en un plano 2D.
-        
-        Args:
-            x1 (float): Coordenada x del primer punto
-            y1 (float): Coordenada y del primer punto
-            x2 (float): Coordenada x del segundo punto
-            y2 (float): Coordenada y del segundo punto
-            
-        Returns:
-            tuple: Coordenadas (x, y) del punto medio
-        """
-        pass
+    def test_punto_medio(self):
+        # Test con valores enteros positivos
+        assert self.geometria.punto_medio(2, 4, 6, 8) == (4, 6)
+        # Test con valores negativos
+        assert self.geometria.punto_medio(-2, -4, 2, 4) == (0, 0)
+        # Test con valores decimales
+        assert self.geometria.punto_medio(1.5, 2.5, 3.5, 4.5) == (2.5, 3.5)
     
-    def pendiente_recta(self, x1, y1, x2, y2):
-        """
-        Calcula la pendiente de una recta que pasa por dos puntos.
-        
-        Args:
-            x1 (float): Coordenada x del primer punto
-            y1 (float): Coordenada y del primer punto
-            x2 (float): Coordenada x del segundo punto
-            y2 (float): Coordenada y del segundo punto
-            
-        Returns:
-            float: Pendiente de la recta
-        """
-        pass
+    def test_pendiente_recta(self):
+        # Test con valores enteros positivos
+        assert self.geometria.pendiente_recta(1, 1, 4, 7) == 2
+        # Test con valores negativos
+        assert self.geometria.pendiente_recta(-1, -2, 2, 4) == 2
+        # Test con línea horizontal (pendiente cero)
+        assert self.geometria.pendiente_recta(1, 5, 5, 5) == 0
+        # Test con línea vertical (pendiente infinita)
+        with pytest.raises(ZeroDivisionError):
+            self.geometria.pendiente_recta(3, 1, 3, 5)
     
-    def ecuacion_recta(self, x1, y1, x2, y2):
-        """
-        Obtiene los coeficientes de la ecuación de una recta en la forma Ax + By + C = 0.
-        
-        Args:
-            x1 (float): Coordenada x del primer punto
-            y1 (float): Coordenada y del primer punto
-            x2 (float): Coordenada x del segundo punto
-            y2 (float): Coordenada y del segundo punto
-            
-        Returns:
-            tuple: Coeficientes (A, B, C) de la ecuación de la recta
-        """
-        pass
+    def test_ecuacion_recta(self):
+        # Test con valores enteros
+        assert self.geometria.ecuacion_recta(1, 1, 3, 3) == (2, -2, 0)
+        # Test con valores negativos
+        assert self.geometria.ecuacion_recta(-1, -2, 2, 4) == (6, -3, 0)
+        # Test con línea horizontal
+        assert self.geometria.ecuacion_recta(1, 5, 5, 5) == (0, 1, -5)
     
-    def area_poligono_regular(self, num_lados, lado, apotema):
-        """
-        Calcula el área de un polígono regular.
-        
-        Args:
-            num_lados (int): Número de lados del polígono
-            lado (float): Longitud de cada lado
-            apotema (float): Longitud de la apotema
-            
-        Returns:
-            float: Área del polígono regular
-        """
-        pass
+    def test_area_poligono_regular(self):
+        # Test con triángulo regular
+        assert round(self.geometria.area_poligono_regular(3, 10, 2.89), 2) == 43.35
+        # Test con cuadrado
+        assert self.geometria.area_poligono_regular(4, 5, 2.5) == 50
+        # Test con pentágono
+        assert round(self.geometria.area_poligono_regular(5, 6, 4.1), 2) == 61.5
     
-    def perimetro_poligono_regular(self, num_lados, lado):
-        """
-        Calcula el perímetro de un polígono regular.
-        
-        Args:
-            num_lados (int): Número de lados del polígono
-            lado (float): Longitud de cada lado
-            
-        Returns:
-            float: Perímetro del polígono regular
-        """
-        pass
+    def test_perimetro_poligono_regular(self):
+        # Test con triángulo regular
+        assert self.geometria.perimetro_poligono_regular(3, 10) == 30
+        # Test con cuadrado
+        assert self.geometria.perimetro_poligono_regular(4, 5) == 20
+        # Test con octágono
+        assert self.geometria.perimetro_poligono_regular(8, 2.5) == 20
